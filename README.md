@@ -38,7 +38,7 @@ Search results are ranked using a simple weighted matching strategy:
 - Tag matches receive intermediate weight
 - Description matches receive lower weight
 
-This approach balances precision and recall while keeping the system interpretable.
+This approach balances precision and recall while keeping the system interpretable. An internal relevance score is computed for ranking and is not exposed in the user interface.
 
 ## Filtering
 
