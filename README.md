@@ -68,6 +68,12 @@ Planned extensions include:
 - Ontology-based tagging
 - Automated updates and validation
 
+## Live app
+🔗 https://amr-resource-search-tbx8qkx4mqt2dg3dfuzi96.streamlit.app/
+
+## Screenshots
+![Search results](screenshots/search_results.png)
+![Filter results](screenshots/filter_results.png)
 
 
 
