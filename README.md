@@ -24,6 +24,7 @@ The dataset was manually curated to ensure accuracy, relevance, and consistency.
 
 Search is performed using keyword-based matching across selected fields, including:
 - database/tool name
+- fullform
 - primary_use
 - description
 - tags
@@ -33,7 +34,7 @@ All text is normalized during search (lowercasing, whitespace trimming) to ensur
 ## Ranking Strategy
 
 Search results are ranked using a simple weighted matching strategy:
-- Matches in the database/tool name are prioritized
+- Matches in the database/tool name and its fullform are prioritized
 - Matches in primary_use receive intermediate weight
 - Tag matches receive intermediate weight
 - Description matches receive lower weight
@@ -59,6 +60,48 @@ Species coverage is displayed for informational purposes and is not used for fil
 - Data source: Excel (.xlsx)  
 
 Standard parsing libraries are used; no custom CSV string splitting is performed.
+
+## Evaluation (Exploratory)
+
+This project implements a rule-based information retrieval system over a curated dataset of 30 AMR-related databases and tools. As no benchmark relevance-labelled dataset exists for this task, an exploratory evaluation was conducted to assess relevance ranking behavior.
+
+### Relevance Definition
+A resource is considered relevant to a search query if the query term matches any of the searchable metadata fields used by the system, including the database/tool name, primary use, curated tags, or description. Relative relevance among multiple matching resources is determined using a weighted ranking scheme, with higher importance assigned to matches in the database/tool name, followed by fullform, tags, primary use and description.
+
+### Evaluation Setup
+- Dataset size: 30 curated AMR resources  
+- Query set: 5 representative queries  
+- Query selection: Queries were derived from controlled vocabulary concepts and expressed as realistic free-text user inputs  
+- Relevance annotation: Manual, based on curated metadata  
+- Metrics: Precision and Recall  
+- Purpose: Exploratory assessment of metadata-driven relevance ranking  
+
+### Evaluation Queries
+The following queries were used to evaluate the system:
+- `surveillance`
+- `phylogenetic`
+- `real time clustering`
+- `protein sequence`
+- `variant`
+
+### Results (Indicative)
+| Query                  | Precision   | Recall |
+|------------------------|-------------|--------|
+| surveillance           | 1           | 1      |
+| phylogenetic           | 1           | 1      |
+| real time clustering   | NA          | 0      |
+| protein sequence       | 1           | 1      |
+| variant                | 1           | 1      |
+
+- Mean Precision: **1** (excluding queries with no retrieved results)
+- Mean Recall: **0.80**
+
+### Interpretation
+Higher precision was observed for queries associated with well-curated and standardized metadata, while recall varied depending on the presence and consistency of relevant concepts across searchable fields. Queries related to specialized methodologies (e.g: real time clustering) exhibited lower recall due to limited representation in metadata fields rather than the ranking errors.
+
+### Limitations
+- Evaluation relies on a small, manually curated query set and subjective relevance judgments 
+- Results are indicative of ranking behavior and are not intended as benchmark performance
 
 ## Future Work
 
