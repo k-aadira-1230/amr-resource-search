@@ -66,7 +66,7 @@ Standard parsing libraries are used; no custom CSV string splitting is performed
 This project implements a rule-based information retrieval system over a curated dataset of 30 AMR-related databases and tools. As no benchmark relevance-labelled dataset exists for this task, an exploratory evaluation was conducted to assess relevance ranking behavior.
 
 ### Relevance Definition
-A resource is considered relevant to a search query if the query term matches any of the searchable metadata fields used by the system, including the database/tool name, primary use, curated tags, or description. Relative relevance among multiple matching resources is determined using a weighted ranking scheme, with higher importance assigned to matches in the database/tool name, followed by fullform, tags, primary use and description.
+A resource is considered relevant to a search query if the query term matches any of the searchable metadata fields used by the system, including the database/tool name, fullform, primary use, curated tags, or description. Relative relevance among multiple matching resources is determined using a weighted ranking scheme, with higher importance assigned to matches in the database/tool name, followed by fullform, tags, primary use and description.
 
 ### Evaluation Setup
 - Dataset size: 30 curated AMR resources  
