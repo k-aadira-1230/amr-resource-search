@@ -142,7 +142,8 @@ if search_query:
     query = search_query.lower().strip()
 
     weights = {
-        "database/tool_name": 4,
+        "database/tool_name": 5,
+        "fullform": 4,
         "tags": 3,
         "primary_use": 2,
         "description": 1
@@ -158,7 +159,7 @@ if search_query:
 
     result_df["score"] = result_df.apply(compute_score, axis=1)
     result_df = result_df[result_df["score"] > 0]
-    result_df = result_df.sort_values("score", ascending=False)
+    result_df = result_df.sort_values(["score", "database/tool_name"], ascending=[False, True])
     result_df = result_df.drop(columns=["score"])
 
 # display logic
@@ -197,5 +198,6 @@ else:
         # Description
         if pd.notna(row["description"]):
             st.markdown(row["description"])
+
 
         st.divider()
